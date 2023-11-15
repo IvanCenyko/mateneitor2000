@@ -1,14 +1,27 @@
 fun main(){
-    println(addFish(10.0,listOf(3,3,3)).toString())
-    println(addFish(8.0,listOf(2,2,2),hasDecoration = false).toString())
-    println(addFish(9.0,listOf(1,1,3),3).toString())
-    println(addFish(10.0,listOf(),7,true).toString())
+    println(whatShouldIDoToday("happy"))
 }
 
-fun addFish(tankSize: Double, currentFish: List<Int>, fishSize: Int = 2, hasDecoration: Boolean = true): Boolean{
-    var totalFish = 0
-    val realTankSize = if (hasDecoration == true) tankSize*0.8 else tankSize
-    for (element in currentFish) totalFish += element
-    println("$realTankSize, $totalFish")
-    return if ((totalFish + fishSize)>realTankSize) false else true
+fun whatShouldIDoToday(mood: String, weather: String = "sunny", temperature: Int = 24): String{
+    return when {
+        mood == "happy" && weather == "sunny" && temperature > 16 -> "Outdoor sex"
+        mood == "happy" && weather == "sunny" && temperature < 16 -> "Baranda sex"
+        mood == "happy" && weather == "rainy" && temperature > 16 -> "Against window sex"
+        mood == "happy" && weather == "rainy" && temperature < 16 -> "Cuddling in bed sex"
+        mood == "happy" && weather == "cloudy" && temperature > 16 -> "Anal sex"
+        mood == "happy" && weather == "cloudy" && temperature < 16 -> "BDSM sex"
+        mood == "sad" && weather == "sunny" && temperature > 16 -> "Creampie sex"
+        mood == "sad" && weather == "sunny" && temperature < 16 -> "Advancing on Cum Jar"
+        mood == "sad" && weather == "rainy" && temperature > 16 -> "Paja triste"
+        mood == "sad" && weather == "rainy" && temperature < 16 -> "Cumming on walls"
+        mood == "sad" && weather == "cloudy" && temperature > 16 -> "Jerking to JOI porn"
+        mood == "sad" && weather == "cloudy" && temperature < 16 -> "Crying till you cum on your chest"
+        mood == "neutral" && weather == "sunny" && temperature > 16 -> "Roulette Jerk off"
+        mood == "neutral" && weather == "sunny" && temperature < 16 -> "Edging"
+        mood == "neutral" && weather == "rainy" && temperature > 16 -> "CBT porn"
+        mood == "neutral" && weather == "rainy" && temperature < 16 -> "Mommy play"
+        mood == "neutral" && weather == "cloudy" && temperature > 16 -> "Pet play"
+        mood == "neutral" && weather == "cloudy" && temperature < 16 -> "Urethra insertion play"
+        else -> "Jerking off to hentai"
+    }
 }

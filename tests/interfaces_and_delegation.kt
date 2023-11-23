@@ -14,6 +14,10 @@ object YellowSpiceColor : SpiceColor {
     override var color = "Yellow"
 }
 
+data class SpiceContainer(val spice: SimpleSpice) {
+    val label: String = spice.name
+}
+
 abstract class SimpleSpice(var name: String, var spiciness: String = "mild", color: SpiceColor) : prepareSpice {
     var heat: Int = 0
         get() {
@@ -55,5 +59,6 @@ fun main() {
 
 fun createSpice(name: String) {
     val myCurry = curry(name, "spicy")
-    println("${myCurry.color}")
+    val spiceContainer = SpiceContainer(myCurry)
+    println(spiceContainer.label)
 }

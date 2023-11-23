@@ -7,15 +7,22 @@ interface Grinder {
 }
 
 interface SpiceColor {
-    var color: String
-}
-
-object YellowSpiceColor : SpiceColor {
-    override var color = "Yellow"
+    var color: color
 }
 
 data class SpiceContainer(val spice: SimpleSpice) {
     val label: String = spice.name
+}
+
+enum class color(val rgb: Int){
+    RED(0xFF0000),
+    GREEN(0x00FF00),
+    YELLOW(0xFFFF00),
+    BLUE(0x0000FF);
+}
+
+object YellowSpiceColor : SpiceColor {
+    override var color: color = color.YELLOW
 }
 
 abstract class SimpleSpice(var name: String, var spiciness: String = "mild", color: SpiceColor) : prepareSpice {
@@ -41,16 +48,16 @@ abstract class SimpleSpice(var name: String, var spiciness: String = "mild", col
 
 class curry(name: String, spiciness: String, color: SpiceColor = YellowSpiceColor) :
     SimpleSpice(name, spiciness, color), Grinder {
-    
+
     val spiceColor: SpiceColor = color // Delegate to the color property in SpiceColor interface
-    
-    val color: String
-        get() = spiceColor.color // Access the color property through the delegate
-    
+
+    val spiceColorString: String
+        get() = spiceColor.color.toString() // Access the color property through the delegate
+
     override fun grind() {
         // Implementation of grind function
     }
-    
+
 }
 
 fun main() {

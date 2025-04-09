@@ -1,6 +1,18 @@
 from fastapi import FastAPI, HTTPException
 import dotenv
 import os
+import json
+
+
+def update(state:bool):
+    with open("data.json", "w") as file:
+        estado_actual = {}
+        estado_actual["state"] = state
+        file.write(json.dumps(estado_actual))
+
+def get():
+    with open("data.json", "r") as file:
+        return json.loads(file.read())["state"]
 
 # Load environment variables from the .env file
 dotenv.load_dotenv()
@@ -18,11 +30,10 @@ estado_actual = {"state": False}
 def set(valor: bool, password:str):
     if password != CONTRA:
         raise HTTPException(status_code=401, detail="Password incorrecta.")
-    estado_actual["state"] = valor
-    return {"status": True}
+    update(valor)
 
 # USO: url/
 # retorna estado actual
 @app.get("/status")
 def status():
-    return {"state": estado_actual["state"]}
+    return get()

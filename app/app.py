@@ -26,11 +26,19 @@ estado_actual = {"state": False}
 
 # USO: url/set?valor=<bool>&password=<password>
 # retorna que la operacion se hizo adecuadamente
-@app.post("/set")
-def set(valor: bool, password:str):
+@app.post("/force")
+def forceValue(valor: bool, password:str):
     if password != CONTRA:
         raise HTTPException(status_code=401, detail="Password incorrecta.")
     update(valor)
+    
+# USO: url/set?password=<password>
+# Setea directamente el valor
+@app.post("/set")
+def set(password:str):
+    if password != CONTRA:
+        raise HTTPException(status_code=401, detail="Password incorrecta.")
+    update(True)
 
 # USO: url/
 # retorna estado actual
